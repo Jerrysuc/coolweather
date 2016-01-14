@@ -2,7 +2,10 @@ package com.igodiva.coolweather.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +22,6 @@ import com.igodiva.coolweather.model.County;
 import com.igodiva.coolweather.model.Province;
 import com.igodiva.coolweather.util.HttpCallbackListener;
 import com.igodiva.coolweather.util.HttpUtil;
-import com.igodiva.coolweather.util.LogUtil;
 import com.igodiva.coolweather.util.ProvincesData;
 import com.igodiva.coolweather.util.Utility;
 
@@ -62,6 +64,13 @@ public class ChooseAreaActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.getBoolean("city_selected", false)) {
+            Intent intent = new Intent(this, WeatherActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.choose_area);
 
@@ -79,6 +88,12 @@ public class ChooseAreaActivity extends Activity {
                 } else if (currentLevel == LEVEL_CITY) {
                     selectedCity = cityList.get(position);
                     queryCounties();
+                } else  if (currentLevel == LEVEL_COUNTY) {
+                    String countyCode = countyList.get(position).getCountyCode();
+                    Intent intent = new Intent(ChooseAreaActivity.this, WeatherActivity.class);
+                    intent.putExtra("county_code", countyCode);
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -170,7 +185,6 @@ public class ChooseAreaActivity extends Activity {
                 } else if ("county".equals(type)) {
                     result = Utility.handleCountyResponse(coolWeatherDB, response, selectedCity.getId());
                 }
-                LogUtil.d("City", "herer=============");
                 if (result) {
                     // 通过runOnUiThread()方法返回到主线程处理逻辑
                     runOnUiThread(new Runnable() {

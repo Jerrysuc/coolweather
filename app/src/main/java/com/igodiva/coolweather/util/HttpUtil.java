@@ -11,6 +11,7 @@ import java.net.URL;
  */
 public class HttpUtil {
     public static void sendGet(final String address, final HttpCallbackListener listener) {
+        LogUtil.d("Test", address);
         new Thread(new Runnable() {
             @Override
             public void run() {

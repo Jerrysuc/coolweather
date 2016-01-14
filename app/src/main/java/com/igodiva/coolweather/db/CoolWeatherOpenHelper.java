@@ -35,8 +35,8 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
      */
     public static final String CREATE_COUNTY = "create table County(\n" +
             "\t id integer primary key autoincrement,\n" +
-            "\t country_name varchar(100),\n" +
-            "\t country_code varchar(50),\n" +
+            "\t county_name varchar(100),\n" +
+            "\t county_code varchar(50),\n" +
             "\t pyName varchar(50),\n" +
             "\t city_id integer\n" +
             ")";
