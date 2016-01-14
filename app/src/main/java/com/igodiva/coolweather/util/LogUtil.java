@@ -1,4 +1,4 @@
-package com.igodiva.coolweather;
+package com.igodiva.coolweather.util;
 
 import android.util.Log;
 

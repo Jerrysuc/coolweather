@@ -7,6 +7,7 @@ public class County {
     private int id;
     private String countyName;
     private String countyCode;
+    private String pyName;
     private int cityId;
 
     public int getId() {
@@ -39,5 +40,13 @@ public class County {
 
     public void setCityId(int cityId) {
         this.cityId = cityId;
+    }
+
+    public String getPyName() {
+        return pyName;
+    }
+
+    public void setPyName(String pyName) {
+        this.pyName = pyName;
     }
 }

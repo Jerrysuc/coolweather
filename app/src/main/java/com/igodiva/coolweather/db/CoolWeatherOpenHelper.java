@@ -12,31 +12,34 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
     /**
      * Province 省份
      */
-    public static final String CREATE_PROVINCE = "create table cw_province(\n" +
-            "\tid int primary key autoincrement,\n" +
-            "\tprovince_name varchar(50),\n" +
-            "\tprovince_code varchar(50)\n" +
-            ");";
+    public static final String CREATE_PROVINCE = "create table Province(\n" +
+            "\t id integer primary key autoincrement,\n" +
+            "\t province_name varchar(50),\n" +
+            "\t province_code varchar(50),\n" +
+            "\t pyName varchar(50)\n" +
+            ")";
 
     /**
      * City 城市
      */
-    public static final String CREATE_CITY = "create table cw_city(\n" +
-            "\tid int primary key autoincrement,\n" +
-            "\tcity_name varchar(100),\n" +
-            "\tcity_code varchar(50),\n" +
-            "\tprovince_id int\n" +
-            ");";
+    public static final String CREATE_CITY = "create table City(\n" +
+            "\t id integer primary key autoincrement,\n" +
+            "\t city_name varchar(100),\n" +
+            "\t city_code varchar(50),\n" +
+            "\t pyName varchar(50),\n" +
+            "\t province_id integer\n" +
+            ")";
 
     /**
      * County 县
      */
-    public static final String CREATE_COUNTY = "create table cw_county(\n" +
-            "\tid int primary key autoincrement,\n" +
-            "\tcountry_name varchar(100),\n" +
-            "\tcountry_code varchar(50),\n" +
-            "\tcity_id int\n" +
-            ");";
+    public static final String CREATE_COUNTY = "create table County(\n" +
+            "\t id integer primary key autoincrement,\n" +
+            "\t country_name varchar(100),\n" +
+            "\t country_code varchar(50),\n" +
+            "\t pyName varchar(50),\n" +
+            "\t city_id integer\n" +
+            ")";
 
     public CoolWeatherOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -54,4 +57,5 @@ public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }

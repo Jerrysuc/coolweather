@@ -7,6 +7,7 @@ public class Province {
     private int id;
     private String provinceName;
     private String provinceCode;
+    private String pyName;
 
     public int getId() {
         return id;
@@ -30,5 +31,13 @@ public class Province {
 
     public void setProvinceCode(String provinceCode) {
         this.provinceCode = provinceCode;
+    }
+
+    public String getPyName() {
+        return pyName;
+    }
+
+    public void setPyName(String pyName) {
+        this.pyName = pyName;
     }
 }
